@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Banco Terra Firme - Usuários</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1> <a href="/">Banco Terra Firme</a> - Clientes</h1>
+        </div>
+        {% for cliente in clientes %}
+            
+            <div>
+                <p>-------------------------------</p>
+                <p>Nome: {{ cliente.nome }}</p>
+                <p>Agencia: {{ cliente.cod_agencia }}</p>
+                <p>Conta: {{ cliente.numero_conta }}</p>
+                <p>Saldo: {{ cliente.saldo }}</p>
+                <br>
+                <a href="/sacar"><button>sacar</button></a>
+                <a href='/depositar'><button>Depositar </button></p></a>
+                <p></p>
+                <p>-------------------------------</p>
+            </div>
+            
+
+        {% endfor %}
+    </body>
+</html>
