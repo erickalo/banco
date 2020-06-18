@@ -55,14 +55,21 @@ def deposito(request):
     if request.POST:
         conta = request.POST.get('conta')
         agencia = request.POST.get('agencia')
-        deposito = int(request.POST.get('deposito'))
-        if Clientes.objects.filter(user=request.user, cod_agencia=agencia, numero_conta=conta):
-            cli = Clientes.objects.get(user=request.user, cod_agencia=agencia, numero_conta=conta)
-            cli.saldo = deposito + cli.saldo
-            cli.save()
-            messages.success(request, f'Deposito realizado. Saldo atual: {cli.saldo}')
+        deposito = request.POST.get('deposito')
+        if deposito == '':
+            messages.error(request, 'ERRO! Valor inválido')
         else:
-            messages.error(request, 'ERRO! Conta não encontrada!')
+            deposito = int(deposito)
+            if conta == '' or agencia == '':
+                messages.error(request, 'ERRO! Conta não encontrada!')
+            else:
+                if Clientes.objects.filter(user=request.user, cod_agencia=agencia, numero_conta=conta):
+                    cli = Clientes.objects.get(user=request.user, cod_agencia=agencia, numero_conta=conta)
+                    cli.saldo = deposito + cli.saldo
+                    cli.save()
+                    messages.success(request, f'Deposito realizado. Saldo atual: {cli.saldo}')
+                else:
+                    messages.error(request, 'ERRO! Conta não encontrada!')
     return redirect('/depositar')
 
 
@@ -70,16 +77,19 @@ def deposito(request):
 def saque(request):
     if request.POST:
         conta = request.POST.get('conta')
-        agencia = request.POST.get('agencia')
-        saque = int(request.POST.get('saque'))
-        if Clientes.objects.filter(user=request.user, cod_agencia=agencia, numero_conta=conta):
-            cli = Clientes.objects.get(user=request.user, cod_agencia=agencia, numero_conta=conta)
-            if saque <= cli.saldo:
-                cli.saldo = cli.saldo - saque
-                cli.save()
-                messages.success(request, f'Saque realizado. Saldo atual: {cli.saldo}')
-            else:
-                messages.error(request, 'ERRO! Saldo insuficiente')
+        saque = request.POST.get('saque')
+        if saque == '':
+            messages.error(request, 'ERRO! Valor inválido')
         else:
-            messages.error(request, 'ERRO! Conta não encontrada!')
+            saque = int(saque)
+            if Clientes.objects.filter(user=request.user, numero_conta=conta):
+                cli = Clientes.objects.get(user=request.user, numero_conta=conta)
+                if saque <= cli.saldo:
+                    cli.saldo = cli.saldo - saque
+                    cli.save()
+                    messages.success(request, f'Saque realizado. Saldo atual: {cli.saldo}')
+                else:
+                    messages.error(request, 'ERRO! Saldo insuficiente')
+            else:
+                messages.error(request, 'ERRO! Conta não encontrada!')
     return redirect('/sacar')

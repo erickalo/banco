@@ -18,12 +18,11 @@
                 <input type="number", class="form-control" id="deposito" name="saque" placeholder="R$">
             </div>
             <div class="form-group">
-                <label for="agencia">Agencia:</label>
-                <input type="number", class="form-control" id="agencia" name="agencia" placeholder="AG">
-            </div>
-            <div class="form-group">
                 <label for="conta">Conta:</label>
-                <input type="number", class="form-control" id="conta" name="conta" placeholder="CC">
+                <select class="form-control" id="conta" name="conta">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
             </div>
             <div>
                 {% for message in messages %}
