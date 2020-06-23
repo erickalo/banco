@@ -12,12 +12,13 @@
             <h1>Banco Terra Firme</h1>
         </div>
         <div class="content">
-            <p>Bem vindo!</p>
             {% if user.is_authenticated %}
+                <p>Bem vindo, {{ request.user }}!</p>
                 <a href="clientes"><button>Ver conta</button></a>
                 <br><br>
                 <a href="/logout"><button>sair</button></a>
             {% else %}
+                <p>Bem vindo!</p>
                 <a href="login/?next=/"><button>login</button></a>
             {% endif %}
         </div>

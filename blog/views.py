@@ -47,7 +47,8 @@ def depositar(request):
 
 @login_required(login_url='/login')
 def sacar(request):
-    return render(request, 'blog/saque.html')
+    numero_conta = request.GET.get('id')
+    return render(request, 'blog/saque.html', {'numero_conta': numero_conta})
 
 
 @login_required(login_url='/login')
@@ -76,8 +77,8 @@ def deposito(request):
 @login_required(login_url='/login')
 def saque(request):
     if request.POST:
-        conta = request.POST.get('conta')
         saque = request.POST.get('saque')
+        conta = request.POST.get('conta')
         if saque == '':
             messages.error(request, 'ERRO! Valor inválido')
         else:

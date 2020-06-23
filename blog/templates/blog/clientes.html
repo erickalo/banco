@@ -21,13 +21,14 @@
                 <p>Conta: {{ cliente.numero_conta }}</p>
                 <p>Saldo: {{ cliente.saldo }}</p>
                 <br>
-                <a href="/sacar"><button>sacar</button></a>
-                <a href='/depositar'><button>Depositar </button></p></a>
+                <a href="/sacar/?id={{ cliente.numero_conta }}"><button>sacar</button></a>
                 <p></p>
                 <p>-------------------------------</p>
             </div>
-            
-
         {% endfor %}
+        <div>
+            <a href='/depositar'><button>Depositar </button></p></a>
+        </div>
+
     </body>
 </html>

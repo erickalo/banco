@@ -11,14 +11,3 @@ class Clientes(models.Model):
     saldo = models.DecimalField(max_digits=9, decimal_places=2)
     data_criacao = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
-    def debito_conta(self):
-        saque = float(input('Valor a sacar: '))
-        self.saldo -= saque
-        print('Saldo em conta: R${:.2f}'.format(self.saldo))
-
-    def credito_conta(self):
-        credito = float(input('Valor a sacar: '))
-        self.saldo += credito
-        print('Saldo em conta: R${:.2f}'.format(self.saldo))
-
