@@ -11,5 +11,6 @@ urlpatterns = [
     path('depositar/', views.depositar),
     path('depositar/dep', views.deposito),
     path('sacar/', views.sacar),
-    path('sacar/sac', views.saque)
+    path('sacar/sac', views.saque),
+    path('erro/', views.erro)
 ]

@@ -25,9 +25,16 @@
                 <p></p>
                 <p>-------------------------------</p>
             </div>
-        {% endfor %}
-        <div>
-            <a href='/depositar'><button>Depositar </button></p></a>
+            {% endfor %}
+            <div>
+                <a href='/depositar'><button>Depositar </button></p></a>
+            <div>
+                {% for message in messages %}
+                        <div class="alert alert-info">
+                            {{ message }}
+                        </div>
+                {% endfor %}
+            </div>
         </div>
 
     </body>
