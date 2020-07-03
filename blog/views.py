@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import requests
 
 # Create your views here.
 
@@ -104,3 +105,17 @@ def saque(request):
             messages.error(request, f'ERRO! {erro}')
         finally:
             return redirect('/clientes')
+
+
+def dolar(request):
+    conta = request.POST.get('conta')
+    r = requests.get('https://economia.awesomeapi.com.br/json/all/USD-BRL')
+    d = r.json()
+    dolar = d['USD']
+    dolar['high'] = float(dolar['high'])
+    c = round(dolar['high'], 2)
+    cli = Clientes.objects.get(user=request.user)
+    conv = float(cli.saldo) / c
+    conv = int(conv)
+    result = {'vdh': c, 'conv': conv}
+    return render(request, 'blog/dolar.html', {'result': result})

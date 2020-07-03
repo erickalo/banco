@@ -12,5 +12,6 @@ urlpatterns = [
     path('depositar/dep', views.deposito),
     path('sacar/', views.sacar),
     path('sacar/sac', views.saque),
-    path('erro/', views.erro)
+    path('erro/', views.erro),
+    path('clientes/dolar/', views.dolar)
 ]

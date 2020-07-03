@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>Banco Terra Firme - Consulta Dólar</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            <h1> <a href="/">Banco Terra Firme</a> - Clientes</h1>
+        </div>
+        <p>Valor atual do dólar: {{ result.vdh }}</p>
+        <p>Com o seu saldo atual, é possível comprar {{ result.conv }} dólares.</p>
+        <br>
+        <a href="/clientes"><button>voltar</button></a>
+    </body>
+
+</html>

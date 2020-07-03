@@ -22,12 +22,12 @@
                 <p>Saldo: {{ cliente.saldo }}</p>
                 <br>
                 <a href="/sacar/?id={{ cliente.numero_conta }}"><button>sacar</button></a>
-                <p></p>
                 <p>-------------------------------</p>
             </div>
             {% endfor %}
             <div>
                 <a href='/depositar'><button>Depositar </button></p></a>
+                <a href="/clientes/dolar/?id={{ cliente.numero_conta }}"><button>consultar dolar</button></a>
             <div>
                 {% for message in messages %}
                         <div class="alert alert-info">
